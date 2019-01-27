@@ -2,29 +2,35 @@ package com.am.ramadanseries2019;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 
+import com.am.ramadanseries2019.adapter.SliderPagerAdapter;
 import com.am.ramadanseries2019.databinding.ActivityMainBinding;
+import com.am.ramadanseries2019.databinding.ContentMainBinding;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     ActivityMainBinding mLayout;
+    ContentMainBinding mContentLayout;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mLayout = DataBindingUtil.setContentView(this , R.layout.activity_main);
+        mLayout = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        mContentLayout = mLayout.contentMain;
         setSupportActionBar(mLayout.toolbar);
-
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mLayout.drawerLayout, mLayout.toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -32,6 +38,8 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         mLayout.navView.setNavigationItemSelectedListener(this);
+
+        setupSlider();
     }
 
     @Override
@@ -90,4 +98,68 @@ public class MainActivity extends AppCompatActivity
         mLayout.drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+    private void setupSlider() {
+        int dotCount;
+        ImageView[] dots;
+        SliderPagerAdapter viewPageAdapter = new SliderPagerAdapter(this);
+        mContentLayout.sliderPager.setAdapter(viewPageAdapter);
+        dotCount = viewPageAdapter.getCount();
+        dots = new ImageView[dotCount];
+
+        for (int i = 0; i < dotCount; i++) {
+            dots[i] = new ImageView(this);
+            dots[i].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.dot_non_active));
+            mContentLayout.sliderDots.addView(dots[i]);
+        }
+
+        dots[0].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.dot_active));
+        mContentLayout.sliderPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+                for (int i = 0; i < dotCount; i++) {
+                    dots[i].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.dot_non_active));
+                }
+                dots[position].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.dot_active));
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new myTimerTask(), 4000, 4000);
+    }
+
+    public class myTimerTask extends TimerTask {
+        @Override
+        public void run() {
+
+            MainActivity.this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+
+                    if (mContentLayout.sliderPager.getCurrentItem() == 0) {
+                        mContentLayout.sliderPager.setCurrentItem(1);
+                    } else if (mContentLayout.sliderPager.getCurrentItem() == 1) {
+                        mContentLayout.sliderPager.setCurrentItem(2);
+                    } else {
+                        mContentLayout.sliderPager.setCurrentItem(0);
+                    }
+
+                }
+            });
+        }
+    }
 }
+
+
