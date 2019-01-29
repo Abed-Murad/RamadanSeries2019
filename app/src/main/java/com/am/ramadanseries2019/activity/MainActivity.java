@@ -8,12 +8,15 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.am.ramadanseries2019.R;
+import com.am.ramadanseries2019.adapter.SeriesAdapter;
 import com.am.ramadanseries2019.adapter.SliderPagerAdapter;
 import com.am.ramadanseries2019.databinding.ActivityMainBinding;
 import com.am.ramadanseries2019.databinding.ContentMainBinding;
@@ -25,6 +28,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     ActivityMainBinding mLayout;
     ContentMainBinding mContentLayout;
+    private SeriesAdapter mSeriesAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +36,34 @@ public class MainActivity extends AppCompatActivity
         mLayout = DataBindingUtil.setContentView(this, R.layout.activity_main);
         mContentLayout = mLayout.contentMain;
         setSupportActionBar(mLayout.toolbar);
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mLayout.drawerLayout, mLayout.toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mLayout.drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         mLayout.navView.setNavigationItemSelectedListener(this);
         setupSlider();
+        setupFirstCategoryRecyclerView();
+        setupSecondCategoryRecyclerView();
+        setupThirdCategoryRecyclerView();
+    }
+
+
+    private void setupFirstCategoryRecyclerView() {
+        mContentLayout.categoryOneRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        mSeriesAdapter = new SeriesAdapter(this, (view, position, model) -> Toast.makeText(this, "" + position, Toast.LENGTH_SHORT).show());
+        mContentLayout.categoryOneRecyclerView.setAdapter(mSeriesAdapter);
+    }
+
+    private void setupSecondCategoryRecyclerView() {
+        mContentLayout.categoryTwoRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        mSeriesAdapter = new SeriesAdapter(this, (view, position, model) -> Toast.makeText(this, "" + position, Toast.LENGTH_SHORT).show());
+        mContentLayout.categoryTwoRecyclerView.setAdapter(mSeriesAdapter);
+    }
+
+    private void setupThirdCategoryRecyclerView() {
+        mContentLayout.categoryThreeRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        mSeriesAdapter = new SeriesAdapter(this, (view, position, model) -> Toast.makeText(this, "" + position, Toast.LENGTH_SHORT).show());
+        mContentLayout.categoryThreeRecyclerView.setAdapter(mSeriesAdapter);
     }
 
     @Override

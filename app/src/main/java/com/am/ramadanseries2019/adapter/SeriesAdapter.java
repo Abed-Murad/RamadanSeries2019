@@ -14,12 +14,12 @@ import com.am.ramadanseries2019.model.Series;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.ViewHolder> {
+public class SeriesAdapter extends RecyclerView.Adapter<SeriesAdapter.ViewHolder> {
     private List<Series> mSeriesList;
     private LayoutInflater mInflater;
     private OnCategoryClickListener mListener;
 
-    public CategoriesAdapter(Context context, OnCategoryClickListener onCategoryClickListener) {
+    public SeriesAdapter(Context context, OnCategoryClickListener onCategoryClickListener) {
         this.mSeriesList = new ArrayList<>();
         this.mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
