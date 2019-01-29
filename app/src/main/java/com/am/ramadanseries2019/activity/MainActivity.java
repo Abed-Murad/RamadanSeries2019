@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.am.ramadanseries2019.adapter.SliderPagerAdapter;
 import com.am.ramadanseries2019.databinding.ActivityMainBinding;
@@ -111,7 +112,9 @@ public class MainActivity extends AppCompatActivity
         for (int i = 0; i < dotCount; i++) {
             dots[i] = new ImageView(this);
             dots[i].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.dot_non_active));
-            mContentLayout.sliderDots.addView(dots[i]);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            params.setMargins(8, 0, 8, 0);
+            mContentLayout.sliderDots.addView(dots[i], params);
         }
 
         dots[0].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.dot_active));
@@ -137,26 +140,23 @@ public class MainActivity extends AppCompatActivity
             }
         });
         Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new myTimerTask(), 4000, 4000);
+        timer.scheduleAtFixedRate(new myTimerTask(), 6000, 6000);
     }
 
     public class myTimerTask extends TimerTask {
         @Override
         public void run() {
 
-            MainActivity.this.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
+            MainActivity.this.runOnUiThread(() -> {
 
-                    if (mContentLayout.sliderPager.getCurrentItem() == 0) {
-                        mContentLayout.sliderPager.setCurrentItem(1);
-                    } else if (mContentLayout.sliderPager.getCurrentItem() == 1) {
-                        mContentLayout.sliderPager.setCurrentItem(2);
-                    } else {
-                        mContentLayout.sliderPager.setCurrentItem(0);
-                    }
-
+                if (mContentLayout.sliderPager.getCurrentItem() == 0) {
+                    mContentLayout.sliderPager.setCurrentItem(1);
+                } else if (mContentLayout.sliderPager.getCurrentItem() == 1) {
+                    mContentLayout.sliderPager.setCurrentItem(2);
+                } else {
+                    mContentLayout.sliderPager.setCurrentItem(0);
                 }
+
             });
         }
     }
