@@ -1,4 +1,4 @@
-package com.am.ramadanseries2019;
+package com.am.ramadanseries2019.activity;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.am.ramadanseries2019.R;
 import com.am.ramadanseries2019.adapter.SliderPagerAdapter;
 import com.am.ramadanseries2019.databinding.ActivityMainBinding;
 import com.am.ramadanseries2019.databinding.ContentMainBinding;
@@ -25,7 +26,6 @@ public class MainActivity extends AppCompatActivity
     ActivityMainBinding mLayout;
     ContentMainBinding mContentLayout;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,9 +37,7 @@ public class MainActivity extends AppCompatActivity
                 this, mLayout.drawerLayout, mLayout.toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mLayout.drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-
         mLayout.navView.setNavigationItemSelectedListener(this);
-
         setupSlider();
     }
 
