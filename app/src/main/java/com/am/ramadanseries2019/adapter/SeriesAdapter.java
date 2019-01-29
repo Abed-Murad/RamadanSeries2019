@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.am.ramadanseries2019.databinding.ItemSeriesBinding;
-import com.am.ramadanseries2019.model.Category;
+
 import com.am.ramadanseries2019.model.Series;
 
 import java.util.ArrayList;
@@ -20,6 +20,7 @@ public class SeriesAdapter extends RecyclerView.Adapter<SeriesAdapter.ViewHolder
     private OnCategoryClickListener mListener;
 
     public SeriesAdapter(Context context, OnCategoryClickListener onCategoryClickListener) {
+        this.mListener = onCategoryClickListener;
         this.mSeriesList = new ArrayList<>();
         this.mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -35,7 +36,7 @@ public class SeriesAdapter extends RecyclerView.Adapter<SeriesAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-
+//        viewHolder.bind(getItem(i));
     }
 
     private Series getItem(int position) {
@@ -53,6 +54,7 @@ public class SeriesAdapter extends RecyclerView.Adapter<SeriesAdapter.ViewHolder
         public ViewHolder(@NonNull ItemSeriesBinding binding) {
             super(binding.getRoot());
             mLayout = binding;
+            binding.getRoot().setOnClickListener(v -> mListener.onItemClick(v , 3 , null));//TODO:Fix This
         }
 
         private void bind(Series series) {
@@ -79,6 +81,6 @@ public class SeriesAdapter extends RecyclerView.Adapter<SeriesAdapter.ViewHolder
 
 
     public interface OnCategoryClickListener {
-        void onItemClick(View view, int position, Category model);
+        void onItemClick(View view, int position, Series model);
     }
 }

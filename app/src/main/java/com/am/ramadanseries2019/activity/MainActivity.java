@@ -1,5 +1,6 @@
 package com.am.ramadanseries2019.activity;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -11,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -20,6 +22,7 @@ import com.am.ramadanseries2019.adapter.SeriesAdapter;
 import com.am.ramadanseries2019.adapter.SliderPagerAdapter;
 import com.am.ramadanseries2019.databinding.ActivityMainBinding;
 import com.am.ramadanseries2019.databinding.ContentMainBinding;
+import com.am.ramadanseries2019.model.Series;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -50,19 +53,28 @@ public class MainActivity extends AppCompatActivity
 
     private void setupFirstCategoryRecyclerView() {
         mContentLayout.categoryOneRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        mSeriesAdapter = new SeriesAdapter(this, (view, position, model) -> Toast.makeText(this, "" + position, Toast.LENGTH_SHORT).show());
+        mSeriesAdapter = new SeriesAdapter(this, (view, position, model) -> {
+            Toast.makeText(MainActivity.this, "" + position, Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(MainActivity.this, SeriesActivity.class));
+        });
         mContentLayout.categoryOneRecyclerView.setAdapter(mSeriesAdapter);
     }
 
     private void setupSecondCategoryRecyclerView() {
         mContentLayout.categoryTwoRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        mSeriesAdapter = new SeriesAdapter(this, (view, position, model) -> Toast.makeText(this, "" + position, Toast.LENGTH_SHORT).show());
+        mSeriesAdapter = new SeriesAdapter(this, (view, position, model) -> {
+            Toast.makeText(MainActivity.this, "" + position, Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(MainActivity.this, SeriesActivity.class));
+        });
         mContentLayout.categoryTwoRecyclerView.setAdapter(mSeriesAdapter);
     }
 
     private void setupThirdCategoryRecyclerView() {
         mContentLayout.categoryThreeRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        mSeriesAdapter = new SeriesAdapter(this, (view, position, model) -> Toast.makeText(this, "" + position, Toast.LENGTH_SHORT).show());
+        mSeriesAdapter = new SeriesAdapter(this, (view, position, model) -> {
+            Toast.makeText(MainActivity.this, "" + position, Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(MainActivity.this, SeriesActivity.class));
+        });
         mContentLayout.categoryThreeRecyclerView.setAdapter(mSeriesAdapter);
     }
 

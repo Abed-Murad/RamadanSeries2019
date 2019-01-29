@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">مسلسلات رمضان 2019</string>
+    <string name="navigation_drawer_open">فتح القائمة الرئيسية</string>
+    <string name="navigation_drawer_close">إغلاق القائمة الرئيسية</string>
+    <string name="nav_header_title">@string/app_name</string>
+    <string name="nav_header_subtitle">@string/app_name</string>
+    <string name="nav_header_desc">ترويسة القائمة</string>
+    <string name="action_settings">الإعدادات</string>
+    <string name="title_activity_series">قائمة الحلقات</string>
+
+</resources>
