@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout >
+<layout>
 
     <data>
+
         <variable
-            name="post"
+            name="episode"
             type="com.am.ramadanseries2019.model.Episode" />
     </data>
 
-    <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".fragment.PostDetailsFragment">
+            tools:context=".activity.EpisodeActivity">
 
             <LinearLayout
                 android:id="@+id/youtubeViewLayout"
@@ -41,27 +42,22 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="@{post.title}"
+                android:text="الحلقة الأولى الموسم السابع"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/youtubeViewLayout"
-                tools:text="Trump take a hit after two year of hiting " />
+                tools:text="الحلقة الأولى الموسم السابع" />
 
-            <TextView
-                android:id="@+id/dateTextView"
-                android:layout_width="0dp"
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/episodesRecyclerView"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="8dp"
-                android:text="@{post.date}"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/titleTextView"
-                tools:text="22 hours ago" />
+                app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v4.widget.NestedScrollView>
 </layout>

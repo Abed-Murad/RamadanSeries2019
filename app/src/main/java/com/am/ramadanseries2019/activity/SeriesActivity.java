@@ -32,7 +32,7 @@ public class SeriesActivity extends AppCompatActivity {
         mContentLayout.episodesRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         mEpisodesAdapter = new EpisodesAdapter(this, (view, position, model) -> {
             Toast.makeText(SeriesActivity.this, "" + position, Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(SeriesActivity.this, SeriesActivity.class));
+            startActivity(new Intent(SeriesActivity.this, EpisodeActivity.class));
         });
         mContentLayout.episodesRecyclerView.setAdapter(mEpisodesAdapter);
     }
