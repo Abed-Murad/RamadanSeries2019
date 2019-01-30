@@ -26,7 +26,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
                 android:layout_marginBottom="24dp"
                 android:gravity="center"
                 android:orientation="horizontal"
@@ -37,23 +36,28 @@
             <TextView
                 android:id="@+id/categoryOneTextView"
                 android:layout_width="wrap_content"
-                android:layout_height="18dp"
+                android:layout_height="0dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginTop="36dp"
                 android:text="تصنيف 1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.935"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/sliderPager" />
+                app:layout_constraintTop_toBottomOf="@+id/sliderDots" />
+
+            <Button
+                android:id="@+id/firstCategoryMoreBtn"
+                style="@style/Base.Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="المزيد"
+                app:layout_constraintBottom_toBottomOf="@+id/categoryOneTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/categoryOneTextView" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/categoryOneRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="143dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/categoryOneTextView" />
@@ -61,23 +65,28 @@
             <TextView
                 android:id="@+id/categoryTwoTextView"
                 android:layout_width="wrap_content"
-                android:layout_height="18dp"
+                android:layout_height="0dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginTop="36dp"
                 android:text="تصنيف 2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.935"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/categoryOneRecyclerView" />
+
+            <Button
+                android:id="@+id/secondCategoryMoreBtn"
+                style="@style/Base.Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="المزيد"
+                app:layout_constraintBottom_toBottomOf="@+id/categoryTwoTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/categoryTwoTextView" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/categoryTwoRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="143dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/categoryTwoTextView" />
@@ -85,67 +94,31 @@
             <TextView
                 android:id="@+id/categoryThreeTextView"
                 android:layout_width="wrap_content"
-                android:layout_height="18dp"
+                android:layout_height="0dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginTop="36dp"
                 android:text="تصنيف 3"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.935"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/categoryTwoRecyclerView" />
+
+            <Button
+                android:id="@+id/thirdCategoryMoreBtn"
+                style="@style/Base.Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="المزيد"
+                app:layout_constraintBottom_toBottomOf="@+id/categoryThreeTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/categoryThreeTextView" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/categoryThreeRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="143dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/categoryThreeTextView" />
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:text="المزيد"
-                app:layout_constraintBottom_toBottomOf="@+id/categoryOneTextView"
-                app:layout_constraintEnd_toStartOf="@+id/categoryOneTextView"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/categoryOneTextView"
-                app:layout_constraintVertical_bias="1.0" />
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:text="المزيد"
-                app:layout_constraintBottom_toBottomOf="@+id/categoryTwoTextView"
-                app:layout_constraintEnd_toStartOf="@+id/categoryTwoTextView"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/categoryTwoTextView"
-                app:layout_constraintVertical_bias="1.0" />
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:text="المزيد"
-                app:layout_constraintBottom_toBottomOf="@+id/categoryThreeTextView"
-                app:layout_constraintEnd_toStartOf="@+id/categoryThreeTextView"
-                app:layout_constraintHorizontal_bias="0.031"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/categoryThreeTextView" />
 
 
         </android.support.constraint.ConstraintLayout>
