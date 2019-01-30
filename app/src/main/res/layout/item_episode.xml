@@ -5,35 +5,46 @@
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_margin="8dp">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/episodeImageView"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="130dp"
+            android:layout_height="100dp"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="8dp"
             app:layout_constraintEnd_toStartOf="@+id/episodeTitleTextView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_series_holder" />
+            app:srcCompat="@drawable/poster" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="@+id/episodeImageView"
+            app:layout_constraintEnd_toEndOf="@+id/episodeImageView"
+            app:layout_constraintStart_toStartOf="@+id/episodeImageView"
+            app:layout_constraintTop_toTopOf="@+id/episodeImageView"
+            app:srcCompat="@drawable/ic_youtube" />
 
         <TextView
             android:id="@+id/episodeTitleTextView"
+            style="@style/Base.TextAppearance.AppCompat.Title"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:gravity="fill_horizontal|top"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|start"
             android:padding="8dp"
-            android:text="عنوان ورقم الحلقة "
+            android:text="عنوان ورقم الحلقة هو عنوان طويل من حيث الكلام حيث يحتوي على ا يحتوي وي على ا يحتوي الكلمات "
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/episodeImageView"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <View
+            style="@style/Divider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </android.support.constraint.ConstraintLayout>
 </layout>
