@@ -7,19 +7,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.am.ramadanseries2019.R;
 
 public class SliderPagerAdapter extends PagerAdapter {
 
-    private Context context;
+    private Context mContext;
     private LayoutInflater layoutInflater;
     private int[] images = {R.drawable.poster, R.drawable.poster, R.drawable.poster, R.drawable.poster};
 
     public SliderPagerAdapter(Context context) {
-        this.context = context;
+        this.mContext = context;
+        layoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
     }
 
     @Override
@@ -34,18 +35,17 @@ public class SliderPagerAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, final int position) {
-        layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.slide, null);
         ImageView imageView = view.findViewById(R.id.slideImageView);
 
         imageView.setImageResource(images[position]);
         view.setOnClickListener(v -> {
             if (position == 0) {
-                Toast.makeText(context, "Slide 1 Clicked ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "Slide 1 Clicked ", Toast.LENGTH_SHORT).show();
             } else if (position == 1) {
-                Toast.makeText(context, "Slide 2 Clicked ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "Slide 2 Clicked ", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(context, "Slide 3 Clicked ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "Slide 3 Clicked ", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -55,9 +55,9 @@ public class SliderPagerAdapter extends PagerAdapter {
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        ViewPager vp = (ViewPager) container;
+        ViewPager viewPager = (ViewPager) container;
         View view = (View) object;
-        vp.removeView(view);
+        viewPager.removeView(view);
 
     }
 }

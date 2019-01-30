@@ -10,6 +10,7 @@
         tools:showIn="@layout/activity_series">
 
         <android.support.v7.widget.RecyclerView
+            tools:listitem="@layout/item_episode"
             android:id="@+id/episodesRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
