@@ -22,8 +22,8 @@ import com.am.ramadanseries2019.adapter.SeriesAdapter;
 import com.am.ramadanseries2019.adapter.SliderPagerAdapter;
 import com.am.ramadanseries2019.databinding.ActivityMainBinding;
 import com.am.ramadanseries2019.databinding.ContentMainBinding;
-import com.am.ramadanseries2019.model.Series;
 
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -151,6 +151,7 @@ public class MainActivity extends AppCompatActivity
             params.setMargins(8, 0, 8, 0);
             mContentLayout.sliderDots.addView(dots[i], params);
         }
+        reverseLinerLayoutViews();
 
         dots[0].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.dot_active));
         mContentLayout.sliderPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -175,21 +176,39 @@ public class MainActivity extends AppCompatActivity
             }
         });
         Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new myTimerTask(), 6000, 6000);
+        timer.scheduleAtFixedRate(new SliderTimerTask(), 6000, 6000);
     }
 
-    public class myTimerTask extends TimerTask {
+    private void reverseLinerLayoutViews() {
+        ArrayList<View> views = new ArrayList<>();
+        for (int x = 0; x < mContentLayout.sliderDots.getChildCount(); x++) {
+            views.add(mContentLayout.sliderDots.getChildAt(x));
+        }
+        mContentLayout.sliderDots.removeAllViews();
+        for (int x = views.size() - 1; x >= 0; x--) {
+            mContentLayout.sliderDots.addView(views.get(x));
+        }
+    }
+
+    public class SliderTimerTask extends TimerTask {
         @Override
         public void run() {
 
             MainActivity.this.runOnUiThread(() -> {
-
-                if (mContentLayout.sliderPager.getCurrentItem() == 0) {
-                    mContentLayout.sliderPager.setCurrentItem(1);
-                } else if (mContentLayout.sliderPager.getCurrentItem() == 1) {
-                    mContentLayout.sliderPager.setCurrentItem(2);
-                } else {
-                    mContentLayout.sliderPager.setCurrentItem(0);
+                
+                switch (mContentLayout.sliderPager.getCurrentItem()) {
+                    case 0:
+                        mContentLayout.sliderPager.setCurrentItem(1);
+                        break;
+                    case 1:
+                        mContentLayout.sliderPager.setCurrentItem(2);
+                        break;
+                    case 2:
+                        mContentLayout.sliderPager.setCurrentItem(3);
+                        break;
+                    default:
+                        mContentLayout.sliderPager.setCurrentItem(0);
+                        break;
                 }
 
             });
