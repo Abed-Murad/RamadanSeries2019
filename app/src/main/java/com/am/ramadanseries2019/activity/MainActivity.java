@@ -39,15 +39,19 @@ public class MainActivity extends AppCompatActivity
         mLayout = DataBindingUtil.setContentView(this, R.layout.activity_main);
         mContentLayout = mLayout.contentMain;
         setSupportActionBar(mLayout.toolbar);
+        setupDrawer();
+        setupSlider();
+        setupFirstCategoryRecyclerView();
+        setupSecondCategoryRecyclerView();
+        setupThirdCategoryRecyclerView();
+    }
+
+    private void setupDrawer() {
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mLayout.drawerLayout, mLayout.toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mLayout.drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         mLayout.navView.setNavigationItemSelectedListener(this);
-        setupSlider();
-        setupFirstCategoryRecyclerView();
-        setupSecondCategoryRecyclerView();
-        setupThirdCategoryRecyclerView();
     }
 
 
@@ -80,7 +84,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-
         if (mLayout.drawerLayout.isDrawerOpen(GravityCompat.START)) {
             mLayout.drawerLayout.closeDrawer(GravityCompat.START);
         } else {
@@ -90,19 +93,14 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -113,11 +111,10 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
@@ -129,8 +126,6 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_send) {
 
         }
-
-
         mLayout.drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -197,17 +192,17 @@ public class MainActivity extends AppCompatActivity
             MainActivity.this.runOnUiThread(() -> {
                 
                 switch (mContentLayout.sliderPager.getCurrentItem()) {
-                    case 0:
-                        mContentLayout.sliderPager.setCurrentItem(1);
-                        break;
-                    case 1:
+                    case 3:
                         mContentLayout.sliderPager.setCurrentItem(2);
                         break;
                     case 2:
-                        mContentLayout.sliderPager.setCurrentItem(3);
+                        mContentLayout.sliderPager.setCurrentItem(1);
+                        break;
+                    case 1:
+                        mContentLayout.sliderPager.setCurrentItem(0);
                         break;
                     default:
-                        mContentLayout.sliderPager.setCurrentItem(0);
+                        mContentLayout.sliderPager.setCurrentItem(3);
                         break;
                 }
 

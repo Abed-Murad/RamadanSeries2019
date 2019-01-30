@@ -34,7 +34,6 @@ public class EpisodeActivity extends AppCompatActivity {
     private void setupYoutubeView() {
         getLifecycle().addObserver(mLayout.youtubeView);
         mLayout.youtubeView.getPlayerUIController().showFullscreenButton(false);
-
         mLayout.youtubeView.initialize(
                 initializedYouTubePlayer ->
                         initializedYouTubePlayer.addListener(new AbstractYouTubePlayerListener() {
