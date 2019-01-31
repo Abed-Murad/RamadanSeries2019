@@ -22,6 +22,9 @@ import com.am.ramadanseries2019.adapter.SeriesAdapter;
 import com.am.ramadanseries2019.adapter.SliderPagerAdapter;
 import com.am.ramadanseries2019.databinding.ActivityMainBinding;
 import com.am.ramadanseries2019.databinding.ContentMainBinding;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreSettings;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -29,9 +32,12 @@ import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    ActivityMainBinding mLayout;
-    ContentMainBinding mContentLayout;
+    private ActivityMainBinding mLayout;
+    private ContentMainBinding mContentLayout;
     private SeriesAdapter mSeriesAdapter;
+
+    private FirebaseFirestore mFireStore;
+    private CollectionReference mPostRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +45,20 @@ public class MainActivity extends AppCompatActivity
         mLayout = DataBindingUtil.setContentView(this, R.layout.activity_main);
         mContentLayout = mLayout.contentMain;
         setSupportActionBar(mLayout.toolbar);
+        setupFireStore();
         setupDrawer();
         setupSlider();
         setupFirstCategoryRecyclerView();
         setupSecondCategoryRecyclerView();
         setupThirdCategoryRecyclerView();
+    }
+
+    public void setupFireStore() {
+        mFireStore = FirebaseFirestore.getInstance();
+        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+                .setPersistenceEnabled(true)
+                .build();
+        mFireStore.setFirestoreSettings(settings);
     }
 
     private void setupDrawer() {
@@ -190,7 +205,7 @@ public class MainActivity extends AppCompatActivity
         public void run() {
 
             MainActivity.this.runOnUiThread(() -> {
-                
+
                 switch (mContentLayout.sliderPager.getCurrentItem()) {
                     case 3:
                         mContentLayout.sliderPager.setCurrentItem(2);
