@@ -7,6 +7,7 @@ import android.net.Uri;
 
 import com.am.ramadanseries2019.BuildConfig;
 import com.am.ramadanseries2019.R;
+import com.heinrichreimersoftware.androidissuereporter.IssueReporterLauncher;
 import com.mikepenz.aboutlibraries.Libs;
 import com.mikepenz.aboutlibraries.LibsBuilder;
 

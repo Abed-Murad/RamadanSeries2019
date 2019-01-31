@@ -3,6 +3,7 @@ package com.am.ramadanseries2019.activity;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.design.widget.NavigationView;
@@ -22,9 +23,12 @@ import com.am.ramadanseries2019.adapter.SeriesAdapter;
 import com.am.ramadanseries2019.adapter.SliderPagerAdapter;
 import com.am.ramadanseries2019.databinding.ActivityMainBinding;
 import com.am.ramadanseries2019.databinding.ContentMainBinding;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -37,7 +41,8 @@ public class MainActivity extends AppCompatActivity
     private SeriesAdapter mSeriesAdapter;
 
     private FirebaseFirestore mFireStore;
-    private CollectionReference mPostRef;
+    private CollectionReference mCategoriesRef;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,11 +51,26 @@ public class MainActivity extends AppCompatActivity
         mContentLayout = mLayout.contentMain;
         setSupportActionBar(mLayout.toolbar);
         setupFireStore();
+        getCategories();
         setupDrawer();
         setupSlider();
         setupFirstCategoryRecyclerView();
         setupSecondCategoryRecyclerView();
         setupThirdCategoryRecyclerView();
+    }
+
+    private void getCategories() {
+        mCategoriesRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+            }
+        });
     }
 
     public void setupFireStore() {
@@ -59,6 +79,7 @@ public class MainActivity extends AppCompatActivity
                 .setPersistenceEnabled(true)
                 .build();
         mFireStore.setFirestoreSettings(settings);
+        mCategoriesRef = mFireStore.collection("Categories");
     }
 
     private void setupDrawer() {

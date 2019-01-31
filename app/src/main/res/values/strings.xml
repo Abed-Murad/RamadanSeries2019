@@ -97,4 +97,5 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="share_using">Share With</string>
+    <string name="about_libraries_description">This is a good app</string>
 </resources>
