@@ -23,14 +23,19 @@ import com.am.ramadanseries2019.adapter.SeriesAdapter;
 import com.am.ramadanseries2019.adapter.SliderPagerAdapter;
 import com.am.ramadanseries2019.databinding.ActivityMainBinding;
 import com.am.ramadanseries2019.databinding.ContentMainBinding;
+import com.am.ramadanseries2019.model.Category;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -60,15 +65,14 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void getCategories() {
-        mCategoriesRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
 
+        mCategoriesRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                List<Category> postList = task.getResult().toObjects(Category.class);
+                Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
+            } else {
+                Logger.e("Error getting documents.", task.getException());
             }
         });
     }
