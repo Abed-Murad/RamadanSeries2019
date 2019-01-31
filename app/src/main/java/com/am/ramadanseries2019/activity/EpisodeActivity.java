@@ -1,22 +1,16 @@
 package com.am.ramadanseries2019.activity;
 
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import android.widget.Toast;
 
 import com.am.ramadanseries2019.R;
 import com.am.ramadanseries2019.adapter.EpisodesAdapter;
-import com.am.ramadanseries2019.adapter.SeriesAdapter;
 import com.am.ramadanseries2019.databinding.ActivityEpisodeBinding;
-import com.am.ramadanseries2019.model.Episode;
 import com.pierfrancescosoffritti.androidyoutubeplayer.player.listeners.AbstractYouTubePlayerListener;
 
 public class EpisodeActivity extends AppCompatActivity {

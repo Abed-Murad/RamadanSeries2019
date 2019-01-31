@@ -1,15 +1,14 @@
 package com.am.ramadanseries2019.activity;
 
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import android.widget.Toast;
 
 import com.am.ramadanseries2019.R;
 import com.am.ramadanseries2019.adapter.EpisodesAdapter;
-import com.am.ramadanseries2019.adapter.SeriesAdapter;
 import com.am.ramadanseries2019.databinding.ActivitySeriesBinding;
 import com.am.ramadanseries2019.databinding.ContentSeriesBinding;
 
