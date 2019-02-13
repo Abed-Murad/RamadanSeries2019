@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Series {
-    private int id;
+    private String id;
     private String name;
     private String posterUrl;
     private String trailerUrl;
@@ -15,11 +15,11 @@ public class Series {
     public Series() {
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

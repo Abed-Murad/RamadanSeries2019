@@ -1,11 +1,14 @@
 package com.am.ramadanseries2019.activity;
 
 import android.content.Intent;
-import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
 
 import androidx.core.content.ContextCompat;
+import androidx.databinding.DataBindingUtil;
 import androidx.viewpager.widget.ViewPager;
+
+import com.am.ramadanseries2019.model.Episode;
+import com.am.ramadanseries2019.model.Series;
 import com.google.android.material.navigation.NavigationView;
 import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -42,6 +45,8 @@ public class MainActivity extends AppCompatActivity
 
     private FirebaseFirestore mFireStore;
     private CollectionReference mCategoriesRef;
+    private CollectionReference mSeriesListRef;
+    private CollectionReference mEpisodesRef;
 
 
     @Override
@@ -51,35 +56,62 @@ public class MainActivity extends AppCompatActivity
         mContentLayout = mLayout.contentMain;
         setSupportActionBar(mLayout.toolbar);
         setupFireStore();
-        getCategories();
         setupDrawer();
         setupSlider();
         setupFirstCategoryRecyclerView();
         setupSecondCategoryRecyclerView();
         setupThirdCategoryRecyclerView();
+
     }
-
-    private void getCategories() {
-
-
-        mCategoriesRef.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                List<Category> postList = task.getResult().toObjects(Category.class);
-                Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
-            } else {
-                Logger.e("Error getting documents.", task.getException());
-            }
-        });
-    }
-
     public void setupFireStore() {
         mFireStore = FirebaseFirestore.getInstance();
         FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
                 .setPersistenceEnabled(true)
                 .build();
         mFireStore.setFirestoreSettings(settings);
-        mCategoriesRef = mFireStore.collection("Categories");
+        mCategoriesRef = mFireStore.collection("/Categories");
+        mSeriesListRef = mFireStore.collection("/Categories/hGbpMXruaszrEEjpFYuu/seriesList");
+        mEpisodesRef = mFireStore.collection("/Categories/hGbpMXruaszrEEjpFYuu/seriesList/deYdCF7MMGVe15bJrPKa/episodeList");
     }
+    private void getCategories() {
+
+        mCategoriesRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                List<Category> categoryList = task.getResult().toObjects(Category.class);
+                categoryList.get(0).setId(task.getResult().getDocuments().get(0).getId());
+                task.getResult().getDocuments().get(0).
+                Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
+
+            } else {
+                Logger.e("Error getting documents.", task.getException());
+            }
+        });
+
+        mSeriesListRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                List<Series> seriesList = task.getResult().toObjects(Series.class);
+
+                Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
+            } else {
+                Logger.e("Error getting documents.", task.getException());
+            }
+        });
+
+        mEpisodesRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                List<Episode> episodeList = task.getResult().toObjects(Episode.class);
+
+                Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
+            } else {
+                Logger.e("Error getting documents.", task.getException());
+            }
+        });
+
+
+
+    }
+
+
 
     private void setupDrawer() {
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -93,8 +125,9 @@ public class MainActivity extends AppCompatActivity
     private void setupFirstCategoryRecyclerView() {
         mContentLayout.categoryOneRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         mSeriesAdapter = new SeriesAdapter(this, (view, position, model) -> {
-            Toast.makeText(MainActivity.this, "" + position, Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(MainActivity.this, SeriesActivity.class));
+//            Toast.makeText(MainActivity.this, "" + position, Toast.LENGTH_SHORT).show();
+//            startActivity(new Intent(MainActivity.this, SeriesActivity.class));
+            getCategories();
         });
         mContentLayout.categoryOneRecyclerView.setAdapter(mSeriesAdapter);
     }

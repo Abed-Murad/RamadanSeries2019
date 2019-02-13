@@ -1,19 +1,20 @@
 package com.am.ramadanseries2019.model;
 
 public class Episode {
-    private int id;
+    private String id;
     private String title;
-    private String url;
+    private String eUrl;
     private String imageUrl;
 
     public Episode() {
+
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -25,13 +26,7 @@ public class Episode {
         this.title = title;
     }
 
-    public String getUrl() {
-        return url;
-    }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
 
     public String getImageUrl() {
         return imageUrl;
@@ -39,5 +34,13 @@ public class Episode {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public String geteUrl() {
+        return eUrl;
+    }
+
+    public void seteUrl(String url) {
+        this.eUrl = url;
     }
 }
